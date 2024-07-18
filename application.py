@@ -5,7 +5,9 @@ import src.post_install
 # Ensure the spaCy model is downloaded if not already
 src.post_install.download_spacy_model()
 
-app = Flask(__name__)
+application = Flask(__name__)
+
+app = application
 
 @app.route('/')
 def home():
@@ -27,4 +29,4 @@ def summarize():
         return render_template('index.html', output=output)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0")
