@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarizer</title>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='paper.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Adjust as needed for readability */
+            padding: 20px;
+            margin: 50px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Other styles as per your existing style.css */
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Text Summarizer</h1>
+        <form action="/summarize" method="post">
+            <textarea name="text" rows="10" cols="80"></textarea><br><br>
+            <input type="submit" value="Summarize">
+        </form>
+        {% if output %}
+        <div class="summary-box">
+            <p>Original Length: {{ output["Original_length"] }}</p>
+            <p>Summary Length: {{ output["Summary_length"] }}</p>
+            <p>Summary:</p>
+            <pre class="summary-text">{{ output["Summary"] }}</pre>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
